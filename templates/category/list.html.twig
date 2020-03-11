@@ -1,0 +1,72 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+
+    {#   ########### Macro recursive Category ###########}
+
+    {% macro recursiveCategory(category) %}
+
+        {% import _self as self %}
+
+        <tr xmlns:v-on="http://www.w3.org/1999/xhtml" id="item-{{ category.id }}">
+            {% if 1 %}
+                <td>
+                    {% for lvl in 1..category.lvl %}
+                        {% if lvl > 1 %}
+                        <span class="d-inline-block pl-4"></span>
+                        {% endif %}
+                    {% endfor %}
+                    {{ category.title }}
+                </td>
+                <td>
+                    <a href="{{ path('category_edit',{'categoryId': category.id}) }}" class="mr-2"> <i class="fas fa-pencil-alt"></i></a>
+                    <a data-toggle="modal" v-on:click="deleteItem('{{ category.id }}')" href="#"><i class="fas fa-trash"></i> </a>
+                </td>
+            {% endif %}
+        </tr>
+
+        {% if category.__children|length %}
+            {% for child in category.__children %}
+                {{ self.recursiveCategory(child) }}
+            {% endfor %}
+        {% endif %}
+
+    {% endmacro %}
+
+    {% from _self import recursiveCategory %}
+
+    {#   ########### END Macro recursive Category ###########}
+
+    <div class="card shadow ">
+        <div class="card-header">
+            <h1 class="mb-0">{{ root.title }} : liste des catégories  </h1>
+        </div>
+        <div class="card-body">
+            <div>
+                <a href="{{ path('category_add',{'rootId':root.id}) }}" class="btn btn-primary mb-2"><i class="fas fa-plus-circle mr-1">Ajouter</i></a>
+            </div>
+            <div class="table-responsive" id="table">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Libellé de la catégorie</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in arrayTree %}
+                            {{ recursiveCategory(category) }}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/admin/test.js') }}"></script>
+
+{% endblock %}

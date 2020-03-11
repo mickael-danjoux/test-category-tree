@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-5.12.0/css/all.min.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+
+    <!-- Styles -->
+    <link href="{{ asset('css/admin/sb-admin-2.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body id="page-top">
+<div id="wrapper">
+    {% include 'admin/sidebar.html.twig' %}
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            {% include 'admin/navbar.html.twig' %}
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    {% block breadcrumb %}{% endblock %}
+                </ol>
+            </nav>
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">{% block pageTitle %}{% endblock %}</h1>
+                </div>
+
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
+        {% include 'admin/footer.html.twig' %}
+    </div>
+</div>
+
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="application/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="{{ asset('js/admin/sb-admin-2.min.js') }}"></script>
+
+{#VueJs#}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{#Requetes Ajax#}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{#Alertes Js#}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
