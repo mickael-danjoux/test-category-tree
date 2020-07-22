@@ -13,11 +13,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategoryType extends AbstractType
 {
-    private $categoryId;
+    private  $categoryId;
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->categoryId = $options['attr']['categoryId'];
+        $this->categoryId = $options['attr']['category']->getId();
 
         $builder
             ->add('title',TextType::class,['label'=>'Nom de la categorie'])
@@ -25,8 +25,6 @@ class CategoryType extends AbstractType
                 'label' => 'Catégorie parent',
                 'class' => Category::class,
                 'choice_label' => function(Category $category){
-
-
                         if ($category->getLvl() > 0) {
                             $prefix = str_repeat('- ', $category->getLvl());
 

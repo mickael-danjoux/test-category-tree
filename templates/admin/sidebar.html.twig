@@ -20,7 +20,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Gérer les produits:</h6>
-                <a class="collapse-item" href="{{ path('category_list',{'id':constant('App\\Entity\\Category::PRODUCT_ID')}) }}">Catégories</a>
+                <a class="collapse-item" href="{{ path('category_list',{'slug':constant('App\\Entity\\Category::PRODUCT_SLUG')}) }}">Catégories</a>
             </div>
         </div>
     </li>

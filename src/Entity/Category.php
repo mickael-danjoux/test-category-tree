@@ -2,19 +2,31 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Doctrine\ORM\Mapping\InheritanceType;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @Gedmo\Tree(type="nested")
+ * @InheritanceType("SINGLE_TABLE")
+ * @DiscriminatorColumn(name="discr", type="string")
+ * @DiscriminatorMap({
+ *     "category" = "Category",
+ *     "categoryProduct" = "CategoryProduct",
+ *     "categoryActuality" = "CategoryActuality"
+ * })
+ * @ORM\HasLifecycleCallbacks()
  */
 class Category
 {
-    const PRODUCT_ID = 7;
-    const ACTU_ID = 6;
+    CONST PRODUCT_SLUG = 'produits';
+
 
     /**
      * @ORM\Id()
@@ -66,11 +78,21 @@ class Category
      */
     private $children;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
 
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->products = new ArrayCollection();
+    }
+
+    public function init(String $name, Category $parent){
+        $this->setTitle($name);
+        $this->setParent($parent);
     }
 
     public function getId(): ?int
@@ -182,5 +204,24 @@ class Category
         return $this->title;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PreFlush()
+     */
+    public function doStuffOnFlush(){
+        $slugify = new Slugify();
+        $this->slug = $slugify->slugify($this->title);
+    }
 
 }
