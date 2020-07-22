@@ -6,7 +6,7 @@
 
     {#   ########### Macro recursive Category ###########}
 
-    {% macro recursiveCategory(category) %}
+    {% macro recursiveCategory(category, root) %}
 
         {% import _self as self %}
 
@@ -21,7 +21,7 @@
                     {{ category.title }}
                 </td>
                 <td>
-{#                    <a href="{{ path('category_edit',{'categoryId': category.id}) }}" class="mr-2"> <i class="fas fa-pencil-alt"></i></a>#}
+                    <a href="{{ path('category_edit',{'parent': root.slug, 'slugChild' : category.slug}) }}" class="mr-2"> <i class="fas fa-pencil-alt"></i></a>
                     <a data-toggle="modal" v-on:click="deleteItem('{{ category.id }}')" href="#"><i class="fas fa-trash"></i> </a>
                 </td>
             {% endif %}
@@ -45,7 +45,7 @@
         </div>
         <div class="card-body">
             <div>
-{#                <a href="{{ path('category_add',{'rootId':root.id}) }}" class="btn btn-primary mb-2"><i class="fas fa-plus-circle mr-1">Ajouter</i></a>#}
+                <a href="{{ path('category_add',{'slug':root.slug}) }}" class="btn btn-primary mb-2"><i class="fas fa-plus-circle mr-1">Ajouter</i></a>
             </div>
             <div class="table-responsive" id="table">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
                         {% for category in arrayTree %}
-                            {{ recursiveCategory(category) }}
+                            {{ recursiveCategory(category, root) }}
                         {% endfor %}
                     </tbody>
                 </table>

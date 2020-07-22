@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7bfd4ea-cafe-4d51-9e27-e7db1866ab2e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/base-symfony-4.4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/base-symfony-4.4.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/98d1519f-b2df-495e-95d5-0bf989ab0f12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/category/AdminCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/category/AdminCategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/CategoryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CategoryType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20200110091743.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CategoryActuality.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CategoryActuality.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CategoryProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CategoryProduct.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/sidebar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/category/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/category/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/category/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/category/list.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +192,7 @@
       <workItem from="1580402976633" duration="635000" />
       <workItem from="1595335578289" duration="1140000" />
       <workItem from="1595348627665" duration="4078000" />
-      <workItem from="1595418269344" duration="6454000" />
+      <workItem from="1595418269344" duration="9194000" />
     </task>
     <servers />
   </component>
@@ -211,6 +200,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="354" y="135" key="#Inspections" timestamp="1595428950740">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="354" y="135" key="#Inspections/0.0.1440.900@0.0.1440.900" timestamp="1595428950740" />
     <state x="320" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595351040348">
       <screen x="0" y="23" width="1440" height="797" />
     </state>

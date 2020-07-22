@@ -9,15 +9,5 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CategoryProduct extends Category
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
-    public function getId(): ?int
-    {
-        return parent::getId();
-    }
 }

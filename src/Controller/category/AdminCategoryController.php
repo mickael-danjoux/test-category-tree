@@ -11,6 +11,7 @@ use App\Repository\CategoryProductRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Exception\UnexpectedValueException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,6 +46,10 @@ class AdminCategoryController extends AbstractController
 
     /**
      * @Route("/{slug}/add",name="category_add", methods={"GET","POST"})
+     * @param Category $parent
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function add(Category $parent, Request $request, EntityManagerInterface $em){
 
@@ -72,6 +77,40 @@ class AdminCategoryController extends AbstractController
             'action' => 'ajouter'
         ));
     }
+
+    /**
+     * @Route("/{parent}/{slugChild}",name="category_edit", methods={"GET","POST"})
+     * @ParamConverter("parent", options={"mapping": {"parent": "slug"}})
+     * @param Category $parent
+     * @param string $slugChild
+     * @param Request $request
+     * @param CategoryRepository $repo
+     * @param EntityManagerInterface $em
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(Category $parent, string $slugChild, Request $request, CategoryRepository $repo, EntityManagerInterface $em){
+
+        //Can't get the children directly with the param converter
+        //because child depends on the slug and id of the parent (not just the parent's slug)
+        $category = $repo->findOneBy(['parent' => $parent, 'slug' => $slugChild]);
+
+        $form = $this->createForm(CategoryType::class, $category, ['attr' => ['category' => $parent]]);
+        $form->handleRequest($request);
+
+        if( $form->isSubmitted() && $form->isValid() ){
+            $em->persist($category);
+            $em->flush();
+            $this->addFlash('success','la catégorie à bien été modifiée');
+            return $this->redirectToRoute('category_list',['slug' => $parent->getSlug()]);
+        }
+
+        return $this->render('category/edit.html.twig', array(
+            'form' => $form->createView(),
+            'catParent'=> $parent,
+            'action' => 'modifier'
+        ));
+    }
+
 //
 //    /**
 //     * @route("/edit/{categoryId}", name="category_edit")

@@ -26,6 +26,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Category
 {
     CONST PRODUCT_SLUG = 'produits';
+    CONST ACTUALITY_SLUG = 'actualites';
 
 
     /**
